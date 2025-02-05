@@ -1,14 +1,12 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 
 const HeaderS = styled.header`
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     z-index: 1;
     width: 100%;
-    /* color: white; */
-    opacity: 0.9;
     padding: 20px;
 
     div {
@@ -26,23 +24,37 @@ const HeaderS = styled.header`
 const Nav = styled.ul`
     display: flex;
     gap: 20px;
-    text-transform: uppercase;
+    text-transform: capitalize;
 
     a {
         padding: 8px 18px;
         color: inherit;
+        opacity: 0.3;
+        transition: all 0.2s ease-in-out;
+
+        &:hover {
+            opacity: 1;
+        }
+    }
+
+    .active {
+        opacity: 1;
     }
 `;
 
 const Header = () => {
+    const location = useLocation();
+
     return (
         <HeaderS>
             <div>
                 <span className="logo">M</span>
                 <nav>
                     <Nav>
-                        <Link to="/">home</Link>
-                        <Link to="/projects" className="project">
+                        <Link to="/" className={location.pathname === '/' ? 'active' : ''}>
+                            home
+                        </Link>
+                        <Link to="/projects" className={location.pathname === '/projects' ? 'active' : ''}>
                             project
                         </Link>
                     </Nav>
