@@ -2,18 +2,18 @@ import styled, { keyframes } from 'styled-components';
 
 const lineAnimation = keyframes`
   0% {
-    width: 100%;
-    left: 0%;
-    right: 0%;
+    width: 80%;
+    left: 10%;
+    right: 10%;
   }
   100% {
-    width: 10px;
+    width: 6px;
     left: 50%;
     right: 50%;
   }
 `;
 
-const lineDisappear = keyframes`
+const fadeOut = keyframes`
   0% {
     opacity: 1;
   }
@@ -22,8 +22,9 @@ const lineDisappear = keyframes`
   }
 `;
 
-const textAnimation = keyframes`
+const fadeIn = keyframes`
   0% {
+    opacity: 0;
   }
   100% {
     opacity: 1;
@@ -32,22 +33,29 @@ const textAnimation = keyframes`
 
 const Container = styled.div`
     position: relative;
+    z-index: 10;
 `;
 
 const Line = styled.div`
-    width: 100%;
-    height: 10px;
+    width: 80%;
+    left: 10%;
+    right: 10%;
+    height: 6px;
     border-radius: 999px;
     position: absolute;
     top: 50%;
-    background-color: white;
-    animation: ${lineAnimation} 0.5s forwards, ${lineDisappear} 2s 0.3s forwards;
+    z-index: 20;
+    background-color: #000000;
+    animation: ${lineAnimation} 0.5s forwards, ${fadeOut} 2s 0.3s forwards;
     animation-delay: 0.5s;
 `;
 
 const Text = styled.div`
+    /* color: white; */
+    /* font-weight: bold; */
+    /* font-size: 35px; */
     opacity: 0;
-    animation: ${textAnimation} 0.5s forwards;
+    animation: ${fadeIn} 0.5s forwards;
     animation-delay: 1.5s;
 `;
 
