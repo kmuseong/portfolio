@@ -1,30 +1,29 @@
 import styled from 'styled-components';
+import useInViewAnimation from '../../hooks/useInViewAnimation';
+import { TextBox, Box } from '../AnimatedComponents';
 
 const ProjectTitle = ({ data }) => {
+    const { textRef, boxRef, textVisible, boxVisible } = useInViewAnimation();
+
     return (
-        <Title>
-            <div className="intro">
+        <section id="title">
+            <Intro ref={textRef} $visible={textVisible}>
                 <p className="sub-title">{data?.subTitle}</p>
                 <p className="title">{data?.mainTitle}</p>
-            </div>
+            </Intro>
 
-            <img src={data?.image} alt="" />
-        </Title>
+            <Image ref={boxRef} $visible={boxVisible}>
+                <img src={data?.image} alt="" />
+            </Image>
+        </section>
     );
 };
 
 export default ProjectTitle;
 
-const Title = styled.section`
-    img {
-        width: 100%;
-        object-fit: contain;
-    }
-
-    .intro {
-        max-width: 1024px;
-        margin: auto;
-    }
+const Intro = styled(TextBox)`
+    max-width: 1024px;
+    margin: auto;
 
     .sub-title {
         font-size: 20px;
@@ -34,5 +33,12 @@ const Title = styled.section`
 
     .title {
         font-size: 30px;
+    }
+`;
+
+const Image = styled(Box)`
+    img {
+        width: 100%;
+        object-fit: contain;
     }
 `;

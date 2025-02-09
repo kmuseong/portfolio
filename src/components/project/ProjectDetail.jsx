@@ -4,7 +4,7 @@ const ProjectDetail = ({ data }) => {
     return (
         <Detail>
             <div className="box">
-                <section>
+                <section id="detail">
                     <p>프로젝트 세부 정보</p>
 
                     <ul className="content">
@@ -26,15 +26,17 @@ const ProjectDetail = ({ data }) => {
                     </ul>
                 </section>
 
-                <section>
-                    <p>담당역할</p>
+                {data.role && (
+                    <section>
+                        <p>담당역할</p>
 
-                    <ul className="content">
-                        {data.role.map((item, index) => (
-                            <li key={index}>{item}</li>
-                        ))}
-                    </ul>
-                </section>
+                        <ul className="content">
+                            {data.role?.map((item, index) => (
+                                <li key={index}>{item}</li>
+                            ))}
+                        </ul>
+                    </section>
+                )}
             </div>
         </Detail>
     );

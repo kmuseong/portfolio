@@ -82,7 +82,7 @@ const ProjectsPage = () => {
     const ProjectList = [
         {
             image: PJIMAGE,
-            name: '어디로든 PJ',
+            name: 'PJ',
             info: '여행 일정 관리 서비스',
             tags: ['팀 프로젝트', 'web 기반', 'React', 'styled-components'],
         },

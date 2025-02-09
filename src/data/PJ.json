@@ -2,8 +2,13 @@
     "title": {
         "subTitle": "자유로운 P형 인간과 계획적인 J형 인간 모두를 위한",
         "mainTitle": "맞춤형 여행 일정 관리 서비스",
-        "image": "/PJ/PJ_project.png"
+        "image": "/PJ/project.png",
+        "theme": {
+            "bg": "#296fef",
+            "text": "white"
+        }
     },
+
     "detail": {
         "info": {
             "date": "2024년 7월 19일 ~ 2024년 8월 16일 (4주)",
@@ -18,6 +23,7 @@
             "Stomp 프로토콜과 드래그 앤 드롭 기능을 활용한 실시간 일정 편집 구현"
         ]
     },
+
     "intro": [
         {
             "title": "일정 및 장소 선택",
@@ -40,19 +46,20 @@
             "image": "/PJ/board.gif"
         }
     ],
+
     "troubleshooting": [
         {
             "name": "코드 분할",
             "content": [
                 {
                     "title": "문제",
-                    "content": "Lighthouse 검사 결과 좋은 점수였지만 FCP와 LCP 속도 부분에서 아쉬운 부분이 있었습니다.",
+                    "content": "Lighthouse 분석 결과 좋은 점수였지만 FCP와 LCP 속도 부분에서 아쉬운 부분이 있었습니다.",
                     "image": "/PJ/lazy_before.png"
                 },
                 {
                     "title": "해결 방법",
-                    "content": "lazy 컴포넌트 로딩 기준을 사용자의 접근성을 고려하여 설정했습니다.\n 로그인 여부에 따라 lazy 로딩을 적용하도록 하였습니다.",
-                    "image": "/PJ/lazy_before.png"
+                    "content": "lazy 기능을 활용하여 번들 파일 크기를 줄이고, 파일 로딩 시간을 단축해 성능을 개선할 수 있다고 판단했습니다. 또한, 사용자 접근성을 고려하여 lazy 컴포넌트 로딩 기준을 설정하고, 로그인 여부에 따라 적용하도록 구현했습니다.",
+                    "image": "/PJ/lazy_code.png"
                 },
                 {
                     "title": "결과",
@@ -67,8 +74,7 @@
         }
     ],
 
-    "theme": {
-        "bg": "#296fef",
-        "text": "white"
-    }
+    "site": "http://pj-client.s3-website.ap-northeast-2.amazonaws.com",
+
+    "github": "https://github.com/PJ-Plan-Journey/PJ-Plan-Journey-FE"
 }
