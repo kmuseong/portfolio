@@ -18,6 +18,7 @@ const HeaderS = styled.header`
 
     .logo {
         font-size: 30px;
+        color: black;
     }
 `;
 
@@ -28,35 +29,41 @@ const Nav = styled.ul`
 
     a {
         padding: 8px 18px;
-        color: inherit;
-        opacity: 0.3;
         transition: all 0.2s ease-in-out;
+        color: rgba(0, 0, 0, 0.3);
 
         &:hover {
-            opacity: 1;
+            color: rgba(0, 0, 0, 0.78);
         }
     }
 
     .active {
-        opacity: 1;
+        color: rgba(0, 0, 0, 1);
     }
 `;
 
 const Header = () => {
     const location = useLocation();
 
+    const navlist = ['about', 'resume', 'projects'];
+
     return (
         <HeaderS>
             <div>
-                <span className="logo">M</span>
+                <Link to="/" className="logo">
+                    M
+                </Link>
                 <nav>
                     <Nav>
-                        <Link to="/" className={location.pathname === '/' ? 'active' : ''}>
-                            home
-                        </Link>
-                        <Link to="/projects" className={location.pathname === '/projects' ? 'active' : ''}>
-                            project
-                        </Link>
+                        {navlist.map((path) => (
+                            <Link
+                                key={path}
+                                to={`/${path}`}
+                                className={location.pathname === `/${path}` ? 'active' : ''}
+                            >
+                                {path}
+                            </Link>
+                        ))}
                     </Nav>
                 </nav>
             </div>
