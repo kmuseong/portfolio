@@ -14,7 +14,9 @@
             "date": "2024.08.19 ~ 2024년 9월 23일",
             "content": ["커피 원두를 간편하게 구매할 수 있는 커머스 플랫폼입니다.", "개인프로젝트"]
         },
-        "tech": ["React, Typescript, Supabase, Zustand, Tanstack-query, Shadcn/ui"]
+        "tech": ["React, Typescript, Supabase, Zustand, Tanstack-query, Shadcn/ui"],
+        "site": "",
+        "github": ""
     },
 
     "intro": [
@@ -96,9 +98,5 @@
                 }
             ]
         }
-    ],
-
-    "site": "",
-
-    "github": ""
+    ]
 }

@@ -21,7 +21,9 @@
         "role": [
             "Kakao Map과 장소 검색을 활용한 여행 일정 CRUD 기능 개발",
             "Stomp 프로토콜과 드래그 앤 드롭 기능을 활용한 실시간 일정 편집 구현"
-        ]
+        ],
+        "site": "http://pj-client.s3-website.ap-northeast-2.amazonaws.com",
+        "github": "https://github.com/PJ-Plan-Journey/PJ-Plan-Journey-FE"
     },
 
     "intro": [
@@ -72,9 +74,5 @@
                 }
             ]
         }
-    ],
-
-    "site": "http://pj-client.s3-website.ap-northeast-2.amazonaws.com",
-
-    "github": "https://github.com/PJ-Plan-Journey/PJ-Plan-Journey-FE"
+    ]
 }

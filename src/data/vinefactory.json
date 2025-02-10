@@ -17,7 +17,9 @@
                 "검색 결과에 나타나도록 하기 위해 google search console과 naver searchadvisor 등록 및 사이트맵 자동생성과 같은 작업들이 필요하다는 것을 알게 되었습니다."
             ]
         },
-        "tech": ["next, tailwind css"]
+        "tech": ["next, tailwind css"],
+        "site": "",
+        "github": ""
     },
 
     "intro": [
@@ -50,9 +52,5 @@
                 }
             ]
         }
-    ],
-
-    "site": "",
-
-    "github": ""
+    ]
 }
