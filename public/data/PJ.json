@@ -2,7 +2,7 @@
     "title": {
         "subTitle": "자유로운 P형 인간과 계획적인 J형 인간 모두를 위한",
         "mainTitle": "맞춤형 여행 일정 관리 서비스",
-        "image": "/PJ/project.png",
+        "image": "/portfolio/PJ/project.png",
         "theme": {
             "bg": "#296fef",
             "text": "white"
@@ -30,22 +30,22 @@
         {
             "title": "일정 및 장소 선택",
             "content": "일정을 선택하고 원하는 날짜의 장소를 선택할 수 있습니다.",
-            "image": "/PJ/add.gif"
+            "image": "/portfolio/PJ/add.gif"
         },
         {
             "title": "친구 초대",
             "content": "친구를 초대하여 함께 계획할 수 있습니다.",
-            "image": "/PJ/invite.gif"
+            "image": "/portfolio/PJ/invite.gif"
         },
         {
             "title": "실시간 편집",
             "content": "실시간으로 친구와 편집할 수 있습니다.",
-            "image": "/PJ/edit.gif"
+            "image": "/portfolio/PJ/edit.gif"
         },
         {
             "title": "일정 공유",
             "content": "나의 여행 일정을 다른 사람과 공유할 수 있습니다.",
-            "image": "/PJ/board.gif"
+            "image": "/portfolio/PJ/board.gif"
         }
     ],
 
@@ -56,12 +56,12 @@
                 {
                     "title": "문제",
                     "content": "Lighthouse 분석 결과 좋은 점수였지만 FCP와 LCP 속도 부분에서 아쉬운 부분이 있었습니다.",
-                    "image": "/PJ/lazy_before.png"
+                    "image": "/portfolio/PJ/lazy_before.png"
                 },
                 {
                     "title": "해결 방법",
                     "content": "lazy 기능을 활용하여 번들 파일 크기를 줄이고, 파일 로딩 시간을 단축해 성능을 개선할 수 있다고 판단했습니다. 또한, 사용자 접근성을 고려하여 lazy 컴포넌트 로딩 기준을 설정하고, 로그인 여부에 따라 적용하도록 구현했습니다.",
-                    "image": "/PJ/lazy_code.png"
+                    "image": "/portfolio/PJ/lazy_code.png"
                 },
                 {
                     "title": "결과",
@@ -70,7 +70,7 @@
                         "FCP는 1.2초에서 0.5초로 단축\n",
                         "LCP는 1.5초에서 1.0초로 단축\n"
                     ],
-                    "image": "/PJ/lazy_after.png"
+                    "image": "/portfolio/PJ/lazy_after.png"
                 }
             ]
         }
