@@ -1,4 +1,4 @@
-import styled, { keyframes } from 'styled-components';
+import styled, { keyframes, css } from 'styled-components';
 
 const lineAnimation = keyframes`
   0% {
@@ -46,24 +46,36 @@ const Line = styled.div`
     top: 50%;
     z-index: 20;
     background-color: #000000;
-    animation: ${lineAnimation} 0.5s forwards, ${fadeOut} 2s 0.3s forwards;
-    animation-delay: 0.5s;
+
+    ${({ $isAnimationSeen }) =>
+        $isAnimationSeen
+            ? css`
+                  animation: ${lineAnimation} 0.5s forwards, ${fadeOut} 1.7s 0.1s forwards;
+                  animation-delay: 0.5s;
+              `
+            : css`
+                  opacity: 0;
+              `}
 `;
 
 const Text = styled.div`
-    /* color: white; */
-    /* font-weight: bold; */
-    /* font-size: 35px; */
     opacity: 0;
-    animation: ${fadeIn} 0.5s forwards;
-    animation-delay: 1.5s;
+    ${({ $isAnimationSeen }) =>
+        $isAnimationSeen
+            ? css`
+                  animation: ${fadeIn} 0.5s forwards;
+                  animation-delay: 2s;
+              `
+            : css`
+                  opacity: 1;
+              `}
 `;
 
-const MainAnimate = ({ children }) => {
+const MainAnimate = ({ children, isAnimationSeen }) => {
     return (
         <Container>
-            <Line />
-            <Text>{children}</Text>
+            <Line $isAnimationSeen={isAnimationSeen} />
+            <Text $isAnimationSeen={isAnimationSeen}>{children}</Text>
         </Container>
     );
 };

@@ -2,7 +2,7 @@ import styled, { keyframes } from 'styled-components';
 import MainAnimate from '../components/MainAnimate';
 import { BsChevronCompactDown } from 'react-icons/bs';
 import ProjectsPage from './ProjectsPage';
-import { useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 const Container = styled.div`
     position: relative;
@@ -98,6 +98,7 @@ const DownArrow = styled.div`
 
 const MainPage = () => {
     const projectRef = useRef(null);
+    const [isAnimationSeen, setIsAnimationSeen] = useState(false);
 
     const handleScrollToProjects = () => {
         if (projectRef.current) {
@@ -105,15 +106,26 @@ const MainPage = () => {
         }
     };
 
+    useEffect(() => {
+        const animationStatus = sessionStorage.getItem('animationSeen');
+        if (!animationStatus) {
+            setIsAnimationSeen(true);
+            sessionStorage.setItem('animationSeen', 'true');
+        }
+    }, []);
+
     return (
         <>
             <Container>
-                <Overlay />
+                {isAnimationSeen && <Overlay />}
 
                 <About>
                     <div className="title">
                         <p>UX를 최우선으로 성장하고자 하는</p>
-                        <MainAnimate className="light">김무성</MainAnimate>입니다.
+                        <MainAnimate isAnimationSeen={isAnimationSeen} className="light">
+                            김무성
+                        </MainAnimate>
+                        입니다.
                     </div>
                     <div className="sub-title">
                         프론트엔드 개발자 김무성입니다. 사용자에게
