@@ -31,8 +31,9 @@ const ProjectDetailPage = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await import(`../data/${projectName}.json`);
-                setData(response.default);
+                const response = await fetch(`/portfolio/data/${projectName}.json`);
+                const jsonData = await response.json();
+                setData(jsonData);
             } catch (error) {
                 console.error('Error loading project data:', error);
             }
