@@ -11,7 +11,7 @@ const Container = styled.div`
     align-items: center;
     flex-direction: column;
     height: 100%;
-    background-color: inherit;
+    background-color: #ffffff;
     overflow: hidden;
     text-transform: uppercase;
 `;
@@ -116,6 +116,7 @@ const MainPage = () => {
 
     return (
         <>
+            <CanvasBackground />
             <Container>
                 {isAnimationSeen && <Overlay />}
 
@@ -147,3 +148,61 @@ const MainPage = () => {
 };
 
 export default MainPage;
+
+const CanvasBackground = () => {
+    const canvasRef = useRef(null);
+
+    useEffect(() => {
+        const canvas = canvasRef.current;
+        const ctx = canvas.getContext('2d');
+
+        const resizeCanvas = () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        };
+
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        let particles = [];
+
+        const createParticle = (x, y) => {
+            const radius = Math.random() * 3 + 1;
+            const speed = Math.random() * 1 + 0.5;
+            particles.push({ x, y, radius, speed });
+        };
+
+        const animateParticles = () => {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            particles.forEach((particle, index) => {
+                ctx.beginPath();
+                ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
+                ctx.fillStyle = 'rgba(0, 170, 255, 0.7)';
+                ctx.fill();
+
+                // 움직임
+                particle.y -= particle.speed;
+                if (particle.y < 0) {
+                    particles.splice(index, 1);
+                }
+            });
+
+            requestAnimationFrame(animateParticles);
+        };
+
+        canvas.addEventListener('mousemove', (e) => {
+            const x = e.clientX;
+            const y = e.clientY;
+            createParticle(x, y);
+        });
+
+        animateParticles();
+
+        return () => {
+            window.removeEventListener('resize', resizeCanvas);
+        };
+    }, []);
+
+    return <canvas ref={canvasRef} style={{ position: 'fixed', top: 0, left: 0, zIndex: 1 }} />;
+};
