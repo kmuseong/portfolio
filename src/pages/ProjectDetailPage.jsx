@@ -8,7 +8,9 @@ import { useProject } from '../hooks/ProjectContext';
 import ProjectScrollList from '../components/project/ProjectScrollList';
 
 const Container = styled.div`
+    position: relative;
     padding: 200px 0;
+    z-index: 50;
 `;
 
 const Step = styled.div`
