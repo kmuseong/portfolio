@@ -4,7 +4,7 @@ import ProjectDetail from '../components/project/ProjectDetail';
 import ProjectSteps from '../components/project/ProjectSteps';
 import ProjectTroubleshooting from '../components/project/ProjectTroubleshootinglist';
 import { useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useProject } from '../hooks/ProjectContext';
 import ProjectScrollList from '../components/project/ProjectScrollList';
 
 const Container = styled.div`
@@ -26,45 +26,34 @@ const Step = styled.div`
 
 const ProjectDetailPage = () => {
     const { projectName } = useParams();
-    const [data, setData] = useState(null);
+    const { projectData } = useProject();
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await fetch(`/portfolio/data/${projectName}.json`);
-                const jsonData = await response.json();
-                setData(jsonData);
-            } catch (error) {
-                console.error('Error loading project data:', error);
-            }
-        };
+    // 프로젝트 데이터가 없으면 렌더링하지 않도록 처리
+    const project = projectData[projectName];
 
-        fetchData();
-    }, [projectName]);
-
-    if (!data) {
-        return <div>Loading...</div>;
+    if (!project) {
+        return <div>프로젝트를 찾을 수 없습니다.</div>; // 데이터가 없을 경우 처리
     }
 
     return (
         <Container>
-            <ProjectTitle data={data?.title} />
+            <ProjectTitle data={project?.title} />
 
-            <ProjectDetail data={data?.detail} />
+            <ProjectDetail data={project?.detail} />
 
-            <ProjectSteps data={data?.intro} />
+            <ProjectSteps data={project?.intro} />
 
-            {data.troubleshooting && (
+            {project?.troubleshooting && (
                 <>
-                    <Step $bg={data.title?.theme.bg} $text={data.title?.theme.text}>
+                    <Step $bg={project?.title?.theme.bg} $text={project?.title?.theme.text}>
                         <p>트러블 슈팅</p>
                     </Step>
 
-                    <ProjectTroubleshooting data={data?.troubleshooting} />
+                    <ProjectTroubleshooting data={project?.troubleshooting} />
                 </>
             )}
 
-            <ProjectScrollList data={data} />
+            <ProjectScrollList data={project} />
         </Container>
     );
 };
