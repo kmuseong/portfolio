@@ -5,7 +5,7 @@ import ProjectsPage from './ProjectsPage';
 import { useEffect, useRef, useState } from 'react';
 
 const Container = styled.div`
-    position: relative;
+    /* position: relative; */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -204,5 +204,5 @@ const CanvasBackground = () => {
         };
     }, []);
 
-    return <canvas ref={canvasRef} style={{ position: 'fixed', top: 0, left: 0, zIndex: 1 }} />;
+    return <canvas ref={canvasRef} style={{ position: 'fixed', top: 0, left: 0, zIndex: 0 }} />;
 };

@@ -139,7 +139,7 @@ export default function LoadingScreen({ onComplete }) {
                         <Second
                             initial={{ opacity: 0, x: -20 }}
                             animate={{ opacity: 1, x: 0 }}
-                            transition={{ duration: 1, delay: 0.5 }}
+                            transition={{ duration: 1, delay: 0.3 }}
                         >
                             Portfolio
                         </Second>
@@ -194,7 +194,7 @@ const LoadingContainer = styled(motion.div)`
     justify-content: center;
     background-color: white;
     color: #000000;
-    z-index: 50;
+    z-index: 999;
     box-shadow: 0 0 2px black;
 `;
 
@@ -225,7 +225,7 @@ const LoadingMessage = styled(motion.p)`
 
 const Heading = styled.h1`
     display: flex;
-    gap: 10px;
+    gap: 5px;
     font-size: 3rem;
     align-items: end;
     margin-bottom: 50px;
