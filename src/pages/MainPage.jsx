@@ -1,208 +1,180 @@
-import styled, { keyframes } from 'styled-components';
-import MainAnimate from '../components/MainAnimate';
-import { BsChevronCompactDown } from 'react-icons/bs';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { useState, useEffect } from 'react';
+import styled from 'styled-components';
 import ProjectsPage from './ProjectsPage';
-import { useEffect, useRef, useState } from 'react';
+import StaticBallCanvas from '../components/StaticBallCanvas';
 
 const Container = styled.div`
-    /* position: relative; */
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    height: 100%;
-    background-color: #ffffff;
-    overflow: hidden;
     text-transform: uppercase;
 `;
 
-const About = styled.div`
-    position: relative;
-    color: #000000;
+const About = styled(motion.div)`
+    color: #000;
     display: flex;
     flex-direction: column;
-    gap: 40px;
-    font-size: 30px;
+    justify-content: center;
+    text-align: center;
+    background-color: white;
+    position: sticky;
+    top: 150px;
+    z-index: -1;
+    margin-top: 30vh;
+    font-size: 6rem;
 
-    .title {
-        display: flex;
-        align-items: end;
-        justify-content: center;
-        gap: 10px;
-        z-index: 20;
-    }
-
-    .sub-title {
-        opacity: 0.7;
-        font-size: 16px;
-        text-align: center;
-        z-index: 1;
-    }
-
-    .light {
+    .text-border {
+        color: white;
+        -webkit-text-stroke: 1px rgba(0, 0, 0, 0.4);
         font-weight: 500;
     }
+
+    .name {
+        font-size: 1.2rem;
+        color: rgb(148, 148, 148);
+        font-weight: 300;
+        letter-spacing: 5px;
+        padding-bottom: 10px;
+    }
 `;
 
-const fadeOut = keyframes`
-  0% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-    display: none;
-  }
-`;
-
-const Overlay = styled.div`
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    animation-delay: 2s;
+const FirstContent = styled(motion.div)`
+    padding: 10px;
+    margin-top: 20vh;
     background-color: white;
-    z-index: 10;
-    animation: ${fadeOut} 0.5s ease-in forwards;
-    animation-delay: 2.5s;
-`;
+    border-radius: 40px;
+    position: relative;
 
-const bounceAnimation = keyframes`
-    0%, 100% {
-        transform: translateY(0);
-    }
-    50% {
-        transform: translateY(-10px);
-    }
-`;
-
-const DownArrow = styled.div`
-    cursor: pointer;
-    position: absolute;
-    bottom: 20px;
-    font-size: 50px;
-
-    animation: ${bounceAnimation} 1.5s infinite ease-in-out;
-
-    svg {
-        transition: all 0.2s ease-in-out;
-        opacity: 0.3;
+    .title-image {
+        min-width: 350px;
+        min-height: 400px;
+        background-color: gray;
+        border-radius: 30px;
     }
 
-    &:hover {
-        svg {
-            opacity: 1;
+    .social {
+        position: absolute;
+        bottom: 30px;
+        right: 30px;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        background-color: rgba(227, 227, 227, 0.3);
+        backdrop-filter: blur(10px);
+        border-radius: 999px;
+        padding: 5px;
+
+        li {
+            cursor: pointer;
+            width: 30px;
+            height: 30px;
+            border-radius: 999px;
+            overflow: hidden;
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
         }
     }
 `;
+
+const Intro = styled(motion.div)`
+    margin-top: 100px;
+    font-size: 1.2rem;
+    text-align: center;
+    background-color: #e9e9e9;
+    padding: 30px;
+    border-radius: 30px;
+    color: rgba(0, 0, 0, 0.78);
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+`;
+
+const Letter = ({ letter, delay }) => {
+    return (
+        <motion.span
+            style={{ display: 'inline-block' }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay, duration: 0.2 }}
+        >
+            {letter}
+        </motion.span>
+    );
+};
+
+const FadeInText = ({ text }) => {
+    return (
+        <motion.div>
+            {text.split('').map((letter, i) => (
+                <Letter key={i} letter={letter} delay={i * 0.03} />
+            ))}
+        </motion.div>
+    );
+};
 
 const MainPage = () => {
-    const projectRef = useRef(null);
-    const [isAnimationSeen, setIsAnimationSeen] = useState(false);
+    const { scrollY } = useScroll();
 
-    const handleScrollToProjects = () => {
-        if (projectRef.current) {
-            projectRef.current.scrollIntoView({ behavior: 'smooth' });
-        }
-    };
+    const [firstContentPosition, setFirstContentPosition] = useState(0);
+
+    const windowHeight = typeof window !== 'undefined' ? window.innerHeight : 0;
+    const triggerPoint = firstContentPosition - windowHeight / 2;
+
+    const scale = useTransform(scrollY, [triggerPoint, triggerPoint + 200], [1, 0]);
+
+    const contentScale = useTransform(scrollY, [triggerPoint, triggerPoint + 100], [0.8, 1]);
 
     useEffect(() => {
-        const animationStatus = sessionStorage.getItem('animationSeen');
-        if (!animationStatus) {
-            setIsAnimationSeen(true);
-            sessionStorage.setItem('animationSeen', 'true');
+        const firstContentElement = document.getElementById('first-content');
+        if (firstContentElement) {
+            setFirstContentPosition(firstContentElement.offsetTop);
         }
     }, []);
 
     return (
-        <>
-            <CanvasBackground />
-            <Container>
-                {isAnimationSeen && <Overlay />}
+        <Container>
+            <About style={{ scale }}>
+                <div className="name">kim museong</div>
+                <FadeInText text={'Intuitive'} />
+                <div className="text-border">web</div>
+                <FadeInText text={'user experience'} />
+            </About>
 
-                <About>
-                    <div className="title">
-                        <p>UX를 최우선으로 성장하고자 하는</p>
-                        <MainAnimate isAnimationSeen={isAnimationSeen} className="light">
-                            김무성
-                        </MainAnimate>
-                        입니다.
-                    </div>
-                    <div className="sub-title">
-                        프론트엔드 개발자 김무성입니다. 사용자에게
-                        <span className="light"> 향상된 속도</span>와 <span className="light">시각적인 경험</span>을
-                        중요시합니다.
-                    </div>
-                </About>
+            <FirstContent id="first-content" style={{ scale: contentScale }}>
+                <img className="title-image" />
+                <ul className="social">
+                    <li>
+                        <img className="github" src="/portfolio/github-mark-white.png" />
+                    </li>
+                    <li>
+                        <img src="/portfolio/T_story.png" />
+                    </li>
+                </ul>
+            </FirstContent>
 
-                <DownArrow onClick={handleScrollToProjects}>
-                    <BsChevronCompactDown />
-                </DownArrow>
-            </Container>
+            <Intro
+                whileInView={{ scale: 1, opacity: 1 }}
+                initial={{ scale: 0.3, opacity: 0 }}
+                transition={{ duration: 0.2 }}
+                viewport={{ once: true }}
+            >
+                <p className="title">안녕하세요. 프론트엔드 개발자 김무성입니다.</p>
+                <p>사용자 중심의 직관적이고 편리한 웹사이트를 만드는 것을 좋아합니다.</p>
+            </Intro>
 
-            <div ref={projectRef}>
+            <div>
+                <div>
+                    <p>My project</p>
+                </div>
                 <ProjectsPage />
             </div>
-        </>
+        </Container>
     );
 };
 
 export default MainPage;
-
-const CanvasBackground = () => {
-    const canvasRef = useRef(null);
-
-    useEffect(() => {
-        const canvas = canvasRef.current;
-        const ctx = canvas.getContext('2d');
-
-        const resizeCanvas = () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        };
-
-        resizeCanvas();
-        window.addEventListener('resize', resizeCanvas);
-
-        let particles = [];
-
-        const createParticle = (x, y) => {
-            const radius = Math.random() * 3 + 1;
-            const speed = Math.random() * 1 + 0.5;
-            particles.push({ x, y, radius, speed });
-        };
-
-        const animateParticles = () => {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-            particles.forEach((particle, index) => {
-                ctx.beginPath();
-                ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
-                ctx.fillStyle = 'rgba(0, 170, 255, 0.7)';
-                ctx.fill();
-
-                // 움직임
-                particle.y -= particle.speed;
-                if (particle.y < 0) {
-                    particles.splice(index, 1);
-                }
-            });
-
-            requestAnimationFrame(animateParticles);
-        };
-
-        canvas.addEventListener('mousemove', (e) => {
-            const x = e.clientX;
-            const y = e.clientY;
-            createParticle(x, y);
-        });
-
-        animateParticles();
-
-        return () => {
-            window.removeEventListener('resize', resizeCanvas);
-        };
-    }, []);
-
-    return <canvas ref={canvasRef} style={{ position: 'fixed', top: 0, left: 0, zIndex: 0 }} />;
-};
