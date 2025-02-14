@@ -2,7 +2,7 @@ import { Link, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 
 const HeaderS = styled.header`
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     z-index: 99;
