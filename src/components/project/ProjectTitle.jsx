@@ -24,15 +24,38 @@ export default ProjectTitle;
 const Intro = styled(TextBox)`
     max-width: 1024px;
     margin: auto;
+    word-wrap: break-word;
+    word-break: keep-all;
 
     .sub-title {
         font-size: 20px;
         margin-bottom: 10px;
-        opacity: 0.7;
+        color: rgba(0, 0, 0, 0.6);
     }
 
     .title {
         font-size: 30px;
+    }
+
+    @media (max-width: 1024px) {
+        padding: 0 40px;
+    }
+
+    @media (max-width: 768px) {
+    }
+
+    @media (max-width: 480px) {
+        padding: 0 20px;
+        font-size: 20px;
+
+        .sub-title {
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .title {
+            font-size: 24px;
+        }
     }
 `;
 

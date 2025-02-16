@@ -6,12 +6,10 @@ const ProjectStepItem = ({ step, index }) => {
     const { textRef, boxRef, textVisible, boxVisible } = useInViewAnimation();
 
     return (
-        <div className="box">
-            {index % 2 === 0 ? (
-                <Image ref={boxRef} $visible={boxVisible}>
-                    <img src={step.image} alt={step.title} />
-                </Image>
-            ) : null}
+        <Content $reverse={index % 2 !== 0}>
+            <ImageWrapper ref={boxRef} $visible={boxVisible}>
+                <img src={step.image} alt={step.title} />
+            </ImageWrapper>
 
             <Description ref={textRef} $visible={textVisible}>
                 <div>
@@ -19,17 +17,23 @@ const ProjectStepItem = ({ step, index }) => {
                     <p className="content">{step.content}</p>
                 </div>
             </Description>
-
-            {index % 2 !== 0 ? (
-                <Image ref={boxRef} $visible={boxVisible}>
-                    <img src={step.image} alt={step.title} />
-                </Image>
-            ) : null}
-        </div>
+        </Content>
     );
 };
 
 export default ProjectStepItem;
+
+const Content = styled.div`
+    display: flex;
+    align-items: center;
+    width: 100%;
+    flex-direction: ${({ $reverse }) => ($reverse ? 'row-reverse' : 'row')};
+
+    @media (max-width: 768px) {
+        flex-direction: column;
+        gap: 20px;
+    }
+`;
 
 const Description = styled(TextBox)`
     flex: 1;
@@ -41,16 +45,40 @@ const Description = styled(TextBox)`
     .title {
         font-size: 30px;
         margin-bottom: 50px;
-        opacity: 0.7;
+        color: rgba(0, 0, 0, 0.78);
     }
 
     .content {
-        opacity: 0.5;
+        color: rgba(0, 0, 0, 0.6);
+    }
+
+    @media (max-width: 1024px) {
+        padding-top: 0;
+    }
+
+    @media (max-width: 768px) {
+        padding-top: 0;
+        width: 100%;
+        justify-content: left;
+
+        .title {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .content {
+            font-size: 13px;
+        }
+    }
+
+    @media (max-width: 480px) {
     }
 `;
 
-const Image = styled(Box)`
+const ImageWrapper = styled(Box)`
     flex: 1;
+    display: flex;
+    justify-content: center;
 
     img {
         width: 100%;
@@ -59,5 +87,13 @@ const Image = styled(Box)`
         object-fit: contain;
         box-shadow: 0 0 1px gray;
         border-radius: 10px;
+    }
+
+    @media (max-width: 768px) {
+        order: 2;
+
+        img {
+            min-height: 100px;
+        }
     }
 `;

@@ -16,6 +16,10 @@ const Overlay = styled.div`
     opacity: 0;
     transition: all 0.2s ease;
     font-size: 40px;
+
+    @media (max-width: 768px) {
+        font-size: 25px;
+    }
 `;
 
 const Card = styled.div`
@@ -36,6 +40,7 @@ const Card = styled.div`
 
     .tag {
         display: flex;
+        flex-wrap: wrap;
         gap: 10px;
 
         li {
@@ -45,6 +50,18 @@ const Card = styled.div`
             color: #6f6f6f;
             border-radius: 9999px;
             text-transform: capitalize;
+        }
+    }
+
+    @media (max-width: 1024px) {
+        img {
+            border-radius: 10px;
+        }
+
+        .tag {
+            li {
+                font-size: 10px;
+            }
         }
     }
 `;
@@ -72,6 +89,16 @@ const Container = styled.div`
 
         &:hover ${Overlay} {
             opacity: 1;
+        }
+    }
+
+    @media (max-width: 768px) {
+        padding: 0 20px;
+
+        .card-list {
+            flex-direction: column;
+            padding: 100px 0;
+            gap: 50px;
         }
     }
 `;

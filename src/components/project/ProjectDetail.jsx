@@ -58,7 +58,7 @@ const Detail = styled.section`
         gap: 20px;
 
         p {
-            opacity: 0.7;
+            color: rgba(0, 0, 0, 0.78);
             margin: 5px 0;
             font-weight: 500;
         }
@@ -67,8 +67,27 @@ const Detail = styled.section`
     .content {
         display: flex;
         flex-direction: column;
-        gap: 5px;
         font-size: 16px;
-        opacity: 0.6;
+        line-height: 2;
+        color: rgba(0, 0, 0, 0.6);
+    }
+
+    @media (max-width: 1024px) {
+        padding: 0 40px;
+    }
+
+    @media (max-width: 768px) {
+    }
+
+    @media (max-width: 480px) {
+        padding: 0 20px;
+
+        .box {
+            font-size: 18px;
+        }
+
+        .content {
+            font-size: 13px;
+        }
     }
 `;

@@ -6,7 +6,6 @@ import { useProject } from '../hooks/ProjectContext';
 export default function LoadingScreen({ onComplete }) {
     const { updateProjectData } = useProject(); // 전역 상태로 프로젝트 데이터 사용
     const [progress, setProgress] = useState(0);
-    const [totalAssets, setTotalAssets] = useState(0);
     const [isLoadingComplete, setIsLoadingComplete] = useState(false);
     const [isComplete, setIsComplete] = useState(false);
     const [loadingMessage, setLoadingMessage] = useState('');
@@ -39,22 +38,19 @@ export default function LoadingScreen({ onComplete }) {
                         .then((jsonData) => {
                             loaded += 1;
 
-                            // 프로젝트 이름을 키로 하고, 데이터를 값으로 넣은 객체 생성
                             return { [project]: jsonData };
                         })
                 );
 
-                // Promise.all을 사용하여 모든 프로젝트 데이터를 배열로 받아옴
                 const data = await Promise.all(dataPromises);
 
-                // 배열을 객체로 변환
                 const projectData = data.reduce((acc, item) => {
-                    return { ...acc, ...item }; // { 프로젝트이름: 데이터 } 형태로 변환
+                    return { ...acc, ...item };
                 }, {});
 
                 console.log(projectData);
 
-                updateProjectData(projectData); // 변환된 객체 전달
+                updateProjectData(projectData);
             } catch (error) {
                 console.error('Error loading project data:', error);
             }
@@ -62,7 +58,6 @@ export default function LoadingScreen({ onComplete }) {
 
         loadProjectData();
 
-        // PerformanceObserver 설정
         const observer = new PerformanceObserver((list) => {
             list.getEntries().forEach(() => {
                 loaded += 1;
@@ -70,8 +65,6 @@ export default function LoadingScreen({ onComplete }) {
             });
         });
         observer.observe({ type: 'resource', buffered: true });
-
-        setTotalAssets(assetsToLoad);
 
         let targetProgress = 0;
 
