@@ -9,7 +9,7 @@ const HeaderS = styled.header`
     left: 0;
     z-index: 99;
     width: 100%;
-    padding: 10px 20px;
+    padding: 20px;
 
     div {
         width: 100%;
@@ -32,6 +32,7 @@ const HeaderS = styled.header`
     }
 
     @media (max-width: 1024px) {
+        padding: 10px 20px;
         background-color: white;
         box-shadow: 0 0 1px rgba(0, 0, 0, 0.6);
     }
