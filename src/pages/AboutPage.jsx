@@ -7,6 +7,14 @@ const Container = styled.div`
     max-width: 1024px;
     margin: auto;
     height: 100%;
+
+    @media (max-width: 1024px) {
+        padding: 0 40px;
+    }
+
+    @media (max-width: 768px) {
+        padding: 0 20px;
+    }
 `;
 
 const Intro = styled.div`
@@ -23,6 +31,18 @@ const Intro = styled.div`
         color: rgba(0, 0, 0, 0.78);
         font-size: 30px;
         font-weight: 300;
+    }
+
+    @media (max-width: 1024px) {
+        padding-top: 150px;
+
+        .greetings {
+            font-size: 20px;
+        }
+
+        .job {
+            font-size: 20px;
+        }
     }
 `;
 
@@ -51,6 +71,16 @@ const SocialList = styled.ul`
         font-size: 15px;
         color: rgba(0, 0, 0, 0.78);
     }
+
+    @media (max-width: 480px) {
+        flex-direction: column;
+        gap: 5px;
+
+        li,
+        button {
+            font-size: 12px;
+        }
+    }
 `;
 
 const ContentBox = styled(Box)`
@@ -62,6 +92,11 @@ const ContentBox = styled(Box)`
     p {
         line-height: 1.5;
         color: rgba(0, 0, 0, 0.78);
+    }
+
+    @media (max-width: 480px) {
+        font-size: 12px;
+        gap: 15px;
     }
 `;
 

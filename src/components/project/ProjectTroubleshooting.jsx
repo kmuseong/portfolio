@@ -22,7 +22,11 @@ export default ProjectTroubleshooting;
 const Name = styled.div`
     padding: 40px 0;
     font-size: 40px;
-    opacity: 0.7;
+    color: rgba(0, 0, 0, 0.78);
+
+    @media (max-width: 480px) {
+        font-size: 30px;
+    }
 `;
 
 const List = styled.ul`

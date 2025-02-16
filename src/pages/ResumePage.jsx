@@ -20,6 +20,28 @@ const Container = styled.div`
         margin-bottom: 10px;
         text-transform: uppercase;
     }
+
+    @media (max-width: 1024px) {
+        padding: 0 40px;
+    }
+
+    @media (max-width: 768px) {
+    }
+
+    @media (max-width: 480px) {
+        padding: 0 20px;
+        gap: 40px;
+
+        .title {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .category-title {
+            font-size: 13px;
+            margin-bottom: 5px;
+        }
+    }
 `;
 
 const fadeInUp = keyframes`
@@ -68,6 +90,35 @@ const Section = styled.div`
 
         li {
             color: rgba(0, 0, 0, 0.6);
+        }
+    }
+
+    @media (max-width: 1024px) {
+    }
+
+    @media (max-width: 768px) {
+        flex-direction: column;
+        align-items: start;
+        gap: 20px;
+
+        .section-item {
+            gap: 5px;
+        }
+
+        .section-name {
+            font-size: 14px;
+        }
+
+        .date {
+            font-size: 10px;
+        }
+
+        .section-content {
+            font-size: 11px;
+        }
+
+        .list {
+            font-size: 13px;
         }
     }
 `;

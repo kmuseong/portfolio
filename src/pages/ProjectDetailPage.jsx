@@ -9,7 +9,7 @@ import ProjectScrollList from '../components/project/ProjectScrollList';
 
 const Container = styled.div`
     position: relative;
-    padding: 200px 0;
+    padding: 150px 0;
     z-index: 50;
 `;
 
@@ -23,6 +23,23 @@ const Step = styled.div`
         max-width: 1200px;
         margin: auto;
         font-size: 40px;
+    }
+
+    @media (max-width: 1024px) {
+        margin-top: 50px;
+        padding: 40px;
+    }
+
+    @media (max-width: 768px) {
+    }
+
+    @media (max-width: 480px) {
+        padding: 30px 20px;
+        margin-bottom: 0;
+
+        p {
+            font-size: 30px;
+        }
     }
 `;
 

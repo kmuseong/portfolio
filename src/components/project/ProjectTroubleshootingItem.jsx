@@ -6,21 +6,17 @@ const ProjectTroubleshootingItem = ({ item, index }) => {
     const { textRef, boxRef, textVisible, boxVisible } = useInViewAnimation();
 
     return (
-        <Container key={index}>
-            {index % 2 === 0 ? (
-                <Image ref={boxRef} $visible={boxVisible}>
-                    <img src={item.image} alt={item.title} />
-                </Image>
-            ) : null}
+        <Container $reverse={index % 2 !== 0}>
+            <Image ref={boxRef} $visible={boxVisible}>
+                <img src={item.image} alt={item.title} />
+            </Image>
+
             <Description ref={textRef} $visible={textVisible}>
-                <p className="title">{item.title}</p>
-                <p className="content">{item.content}</p>
+                <div>
+                    <p className="title">{item.title}</p>
+                    <p className="content">{item.content}</p>
+                </div>
             </Description>
-            {index % 2 !== 0 ? (
-                <Image ref={boxRef} $visible={boxVisible}>
-                    <img src={item.image} alt={item.title} />
-                </Image>
-            ) : null}
         </Container>
     );
 };
@@ -30,6 +26,12 @@ export default ProjectTroubleshootingItem;
 const Container = styled.div`
     display: flex;
     gap: 50px;
+    flex-direction: ${({ $reverse }) => ($reverse ? 'row-reverse' : 'row')};
+
+    @media (max-width: 768px) {
+        flex-direction: column;
+        gap: 20px;
+    }
 `;
 
 const Description = styled(TextBox)`
@@ -39,14 +41,27 @@ const Description = styled(TextBox)`
     .title {
         font-size: 30px;
         margin-bottom: 50px;
-        opacity: 0.7;
+        color: rgba(0, 0, 0, 0.78);
     }
 
     .content {
-        opacity: 0.5;
+        color: rgba(0, 0, 0, 0.5);
         white-space: pre-line;
         line-height: 2;
         text-transform: capitalize;
+    }
+
+    @media (max-width: 768px) {
+        padding-top: 0;
+
+        .title {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .content {
+            font-size: 13px;
+        }
     }
 `;
 
@@ -61,5 +76,13 @@ const Image = styled(Box)`
         object-fit: contain;
         box-shadow: 0 0 1px gray;
         border-radius: 10px;
+    }
+
+    @media (max-width: 768px) {
+        order: 2;
+
+        img {
+            min-height: 100px;
+        }
     }
 `;

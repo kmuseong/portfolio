@@ -25,4 +25,18 @@ const Intro = styled.section`
         display: flex;
         gap: 50px;
     }
+
+    @media (max-width: 1024px) {
+        padding: 5rem 40px;
+    }
+
+    @media (max-width: 768px) {
+        padding: 5rem 20px;
+        gap: 5rem;
+
+        .box {
+            flex-direction: column;
+            gap: 20px;
+        }
+    }
 `;
