@@ -1,29 +1,39 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import ProjectsPage from './ProjectsPage';
-import StaticBallCanvas from '../components/StaticBallCanvas';
+import PJIMAGE from '../assets/PJ-image.png';
+import BIMAGE from '../assets/Beanery-image.png';
+import VIMAGE from '../assets/vinefactory-image.png';
+import { useNavigate } from 'react-router-dom';
 
 const Container = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    text-transform: uppercase;
+    text-transform: capitalize;
+    word-wrap: break-word;
+    word-break: keep-all;
+
+    @media (max-width: 768px) {
+        padding: 0 20px;
+    }
 `;
 
 const About = styled(motion.div)`
     color: #000;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: start;
     text-align: center;
     background-color: white;
     position: sticky;
-    top: 150px;
+    top: 100px;
     z-index: -1;
     margin-top: 30vh;
+    text-transform: uppercase;
     font-size: 6rem;
+    height: 100vh;
 
     .text-border {
         color: white;
@@ -37,6 +47,19 @@ const About = styled(motion.div)`
         font-weight: 300;
         letter-spacing: 5px;
         padding-bottom: 10px;
+    }
+
+    @media (max-width: 1024px) {
+        font-size: 5rem;
+    }
+
+    @media (max-width: 768px) {
+        top: 180px;
+    }
+
+    @media (max-width: 480px) {
+        font-size: 3.5rem;
+        padding-top: 50px;
     }
 `;
 
@@ -52,6 +75,11 @@ const FirstContent = styled(motion.div)`
         min-height: 400px;
         background-color: gray;
         border-radius: 30px;
+
+        @media (max-width: 480px) {
+            min-width: 250px;
+            min-height: 300px;
+        }
     }
 
     .social {
@@ -82,36 +110,83 @@ const FirstContent = styled(motion.div)`
 `;
 
 const Intro = styled(motion.div)`
-    margin-top: 100px;
-    font-size: 1.2rem;
+    margin: 100px 0;
+    font-size: 1rem;
     text-align: center;
-    background-color: #e9e9e9;
+    background-color: #f7f7f7;
     padding: 30px;
     border-radius: 30px;
     color: rgba(0, 0, 0, 0.78);
     display: flex;
     flex-direction: column;
+    justify-content: center;
     gap: 5px;
+
+    @media (max-width: 1024px) {
+        border-radius: 20px;
+        margin: 50px 0;
+        padding: 20px;
+        font-size: 14px;
+    }
 `;
 
-const Letter = ({ letter, delay }) => {
-    return (
-        <motion.span
-            style={{ display: 'inline-block' }}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay, duration: 0.2 }}
-        >
-            {letter}
-        </motion.span>
-    );
-};
+const Projects = styled.div`
+    max-width: 1024px;
+    margin: auto;
+
+    .card-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 50px;
+        padding: 60px;
+    }
+
+    @media (max-width: 480px) {
+        width: 100%;
+
+        .card-list {
+            padding: 20px 0;
+            gap: 10px;
+            flex-direction: column;
+        }
+    }
+`;
+
+const Card = styled(motion.img)`
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    cursor: pointer;
+    position: relative;
+    flex: 0 1 calc(50% - 25px);
+    box-shadow: 0 0 1px gray;
+    border-radius: 30px;
+    overflow: hidden;
+
+    @media (max-width: 1024px) {
+        border-radius: 20px;
+    }
+
+    @media (max-width: 480px) {
+        flex: none;
+        border-radius: 10px;
+    }
+`;
 
 const FadeInText = ({ text }) => {
+    const words = text.split(' ');
     return (
-        <motion.div>
-            {text.split('').map((letter, i) => (
-                <Letter key={i} letter={letter} delay={i * 0.03} />
+        <motion.div style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap' }}>
+            {words.map((word, i) => (
+                <motion.span
+                    key={i}
+                    style={{ display: 'inline-block', marginRight: '10px' }}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: i * 0.3, duration: 0.5 }}
+                >
+                    {word}
+                </motion.span>
             ))}
         </motion.div>
     );
@@ -122,12 +197,35 @@ const MainPage = () => {
 
     const [firstContentPosition, setFirstContentPosition] = useState(0);
 
+    const ProjectList = [
+        {
+            image: PJIMAGE,
+            name: 'PJ',
+            info: '여행 일정 관리 서비스',
+            tags: ['팀 프로젝트', 'web 기반', 'React', 'styled-components'],
+        },
+        {
+            image: BIMAGE,
+            name: 'Beanery',
+            info: '커머스 사이트',
+            tags: ['개인 프로젝트', 'mobile 기반', 'React', 'tailwind css'],
+        },
+        {
+            image: VIMAGE,
+            name: 'vinefactory',
+            info: '서비스 사이트',
+            tags: ['서비스 사이트', 'RWD', 'next', 'tailwind css'],
+        },
+    ];
+
+    const navigate = useNavigate();
+
     const windowHeight = typeof window !== 'undefined' ? window.innerHeight : 0;
     const triggerPoint = firstContentPosition - windowHeight / 2;
 
     const scale = useTransform(scrollY, [triggerPoint, triggerPoint + 200], [1, 0]);
 
-    const contentScale = useTransform(scrollY, [triggerPoint, triggerPoint + 100], [0.8, 1]);
+    const contentScale = useTransform(scrollY, [triggerPoint, triggerPoint + 100], [0.7, 1]);
 
     useEffect(() => {
         const firstContentElement = document.getElementById('first-content');
@@ -161,18 +259,34 @@ const MainPage = () => {
                 whileInView={{ scale: 1, opacity: 1 }}
                 initial={{ scale: 0.3, opacity: 0 }}
                 transition={{ duration: 0.2 }}
-                viewport={{ once: true }}
             >
                 <p className="title">안녕하세요. 프론트엔드 개발자 김무성입니다.</p>
                 <p>사용자 중심의 직관적이고 편리한 웹사이트를 만드는 것을 좋아합니다.</p>
             </Intro>
 
-            <div>
-                <div>
-                    <p>My project</p>
-                </div>
-                <ProjectsPage />
-            </div>
+            <motion.div
+                style={{ fontSize: '1.5rem' }}
+                whileInView={{ opacity: 1 }}
+                initial={{ opacity: 0 }}
+                transition={{ duration: 1 }}
+            >
+                <p>My project</p>
+            </motion.div>
+
+            <Projects>
+                <ul className="card-list">
+                    {ProjectList.map(({ image, name }) => (
+                        <Card
+                            whileInView={{ scale: 1, opacity: 1 }}
+                            initial={{ scale: 0.3, opacity: 0 }}
+                            transition={{ duration: 0.2 }}
+                            key={name}
+                            onClick={() => navigate(`/projects/${name}`)}
+                            src={image}
+                        ></Card>
+                    ))}
+                </ul>
+            </Projects>
         </Container>
     );
 };
