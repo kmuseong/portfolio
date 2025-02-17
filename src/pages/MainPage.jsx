@@ -34,11 +34,13 @@ const About = styled(motion.div)`
     text-transform: uppercase;
     font-size: 6rem;
     height: 100vh;
+    transition: all 0.3s ease-in-out;
 
     .text-border {
         color: ${({ theme }) => theme.background};
         -webkit-text-stroke: 1px ${({ theme }) => theme.textBorder.border};
         font-weight: 500;
+        transition: all 0.3s ease-in-out;
     }
 
     .name {
