@@ -30,11 +30,12 @@ const Intro = styled(TextBox)`
     .sub-title {
         font-size: 20px;
         margin-bottom: 10px;
-        color: rgba(0, 0, 0, 0.6);
+        color: ${({ theme }) => theme.text};
     }
 
     .title {
         font-size: 30px;
+        color: ${({ theme }) => theme.title};
     }
 
     @media (max-width: 1024px) {

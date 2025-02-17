@@ -24,7 +24,7 @@ const ListContainer = styled.ul`
     display: flex;
     flex-direction: column;
     gap: 25px;
-    background-color: rgba(247, 247, 247, 0.8);
+    background-color: ${({ theme }) => theme.box};
     padding: 20px 10px;
     border-radius: 999px;
     backdrop-filter: blur(4px);
@@ -47,7 +47,7 @@ const ListContainer = styled.ul`
 
 const FloatingButton = styled.button`
     display: none;
-    background-color: #ffffff;
+    background-color: ${({ theme }) => theme.box};
     border: none;
     padding: 10px;
     border-radius: 50%;
@@ -59,7 +59,7 @@ const FloatingButton = styled.button`
 
     .icon {
         width: 25px;
-        color: rgba(0, 0, 0, 0.78);
+        color: ${({ theme }) => theme.text};
         transition: all 0.2s ease;
     }
 
@@ -75,7 +75,7 @@ const LinkContainer = styled.ul`
     display: flex;
     flex-direction: column;
     gap: 25px;
-    background-color: rgba(247, 247, 247, 0.8);
+    background-color: ${({ theme }) => theme.box};
     padding: 20px 10px;
     border-radius: 999px;
     backdrop-filter: blur(4px);
@@ -102,7 +102,7 @@ const TextBox = styled.p`
     background-color: rgba(247, 247, 247, 0.8);
     z-index: 999;
     visibility: hidden;
-    color: rgba(0, 0, 0, 0.6);
+    color: ${({ theme }) => theme.text};
     opacity: 0;
     white-space: nowrap;
     padding: 6px 20px;
@@ -121,7 +121,7 @@ const ListItem = styled.button`
 
     .icon {
         width: 25px;
-        color: rgba(0, 0, 0, 0.5);
+        color: ${({ theme }) => theme.text};
         transition: all 0.2s ease;
     }
 
@@ -131,7 +131,7 @@ const ListItem = styled.button`
     }
 
     &:hover ${TextBox} {
-        color: rgba(0, 0, 0, 0.78);
+        color: ${({ theme }) => theme.content};
         visibility: visible;
         transition: opacity 0.2s ease, visibility 0s 0s;
     }

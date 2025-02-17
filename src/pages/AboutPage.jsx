@@ -24,11 +24,12 @@ const Intro = styled.div`
     padding-top: 15%;
 
     .greetings {
+        color: ${({ theme }) => theme.title};
         font-size: 30px;
     }
 
     .job {
-        color: rgba(0, 0, 0, 0.78);
+        color: ${({ theme }) => theme.title};
         font-size: 30px;
         font-weight: 300;
     }
@@ -55,7 +56,7 @@ const SocialList = styled.ul`
         display: flex;
         gap: 5px;
         align-items: center;
-        color: rgba(0, 0, 0, 0.78);
+        color: ${({ theme }) => theme.title};
         font-size: 15px;
     }
 
@@ -69,7 +70,7 @@ const SocialList = styled.ul`
         width: 100%;
         justify-content: flex-start;
         font-size: 15px;
-        color: rgba(0, 0, 0, 0.78);
+        color: ${({ theme }) => theme.title};
     }
 
     @media (max-width: 480px) {
@@ -91,7 +92,7 @@ const ContentBox = styled(Box)`
 
     p {
         line-height: 1.5;
-        color: rgba(0, 0, 0, 0.78);
+        color: ${({ theme }) => theme.text};
     }
 
     @media (max-width: 480px) {

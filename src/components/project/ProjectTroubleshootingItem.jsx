@@ -41,14 +41,16 @@ const Description = styled(TextBox)`
     .title {
         font-size: 30px;
         margin-bottom: 50px;
-        color: rgba(0, 0, 0, 0.78);
+        color: ${({ theme }) => theme.content};
+        transition: all 0.3s ease-in-out;
     }
 
     .content {
-        color: rgba(0, 0, 0, 0.5);
+        color: ${({ theme }) => theme.text};
         white-space: pre-line;
         line-height: 2;
         text-transform: capitalize;
+        transition: all 0.3s ease-in-out;
     }
 
     @media (max-width: 768px) {
@@ -67,6 +69,8 @@ const Description = styled(TextBox)`
 
 const Image = styled(Box)`
     flex: 1;
+    background-color: ${({ theme }) => theme.box};
+    transition: all 0.3s ease-in-out;
 
     img {
         width: 100%;

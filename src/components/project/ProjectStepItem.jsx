@@ -45,11 +45,13 @@ const Description = styled(TextBox)`
     .title {
         font-size: 30px;
         margin-bottom: 50px;
-        color: rgba(0, 0, 0, 0.78);
+        color: ${({ theme }) => theme.content};
+        transition: all 0.3s ease-in-out;
     }
 
     .content {
-        color: rgba(0, 0, 0, 0.6);
+        color: ${({ theme }) => theme.text};
+        transition: all 0.3s ease-in-out;
     }
 
     @media (max-width: 1024px) {
@@ -79,6 +81,8 @@ const ImageWrapper = styled(Box)`
     flex: 1;
     display: flex;
     justify-content: center;
+    background-color: ${({ theme }) => theme.box};
+    transition: all 0.3s ease-in-out;
 
     img {
         width: 100%;

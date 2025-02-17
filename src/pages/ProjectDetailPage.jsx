@@ -4,7 +4,7 @@ import ProjectDetail from '../components/project/ProjectDetail';
 import ProjectSteps from '../components/project/ProjectSteps';
 import ProjectTroubleshooting from '../components/project/ProjectTroubleshootinglist';
 import { useParams } from 'react-router-dom';
-import { useProject } from '../hooks/ProjectContext';
+import { useProject } from '../context/ProjectContext';
 import ProjectScrollList from '../components/project/ProjectScrollList';
 
 const Container = styled.div`

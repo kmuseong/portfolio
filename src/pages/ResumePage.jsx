@@ -12,13 +12,14 @@ const Container = styled.div`
     .title {
         font-size: 30px;
         margin-bottom: 40px;
-        color: rgba(0, 0, 0, 0.78);
+        color: ${({ theme }) => theme.title};
     }
 
     .category-title {
         font-weight: 500;
         margin-bottom: 10px;
         text-transform: uppercase;
+        color: ${({ theme }) => theme.title};
     }
 
     @media (max-width: 1024px) {
@@ -59,21 +60,21 @@ const Section = styled.div`
     display: flex;
     align-items: center;
     gap: 80px;
-    color: rgba(0, 0, 0, 0.78);
+    color: ${({ theme }) => theme.content};
     animation: ${fadeInUp} 0.6s ease;
 
     .section-name {
-        color: black;
+        color: ${({ theme }) => theme.title};
     }
 
     .section-content {
         font-size: 14px;
-        color: rgba(0, 0, 0, 0.78);
+        color: ${({ theme }) => theme.content};
     }
 
     .date {
         font-size: 14px;
-        color: rgba(0, 0, 0, 0.6);
+        color: ${({ theme }) => theme.text};
     }
 
     .section-item {
@@ -86,10 +87,10 @@ const Section = styled.div`
     .list {
         display: flex;
         gap: 20px;
-        color: rgba(0, 0, 0, 0.78);
+        color: ${({ theme }) => theme.content};
 
         li {
-            color: rgba(0, 0, 0, 0.6);
+            color: ${({ theme }) => theme.text};
         }
     }
 
