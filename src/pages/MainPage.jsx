@@ -21,12 +21,12 @@ const Container = styled.div`
 `;
 
 const About = styled(motion.div)`
-    color: #000;
+    color: ${({ theme }) => theme.title};
     display: flex;
     flex-direction: column;
     justify-content: start;
     text-align: center;
-    background-color: white;
+    background-color: inherit;
     position: sticky;
     top: 100px;
     z-index: -1;
@@ -36,8 +36,8 @@ const About = styled(motion.div)`
     height: 100vh;
 
     .text-border {
-        color: white;
-        -webkit-text-stroke: 1px rgba(0, 0, 0, 0.4);
+        color: ${({ theme }) => theme.background};
+        -webkit-text-stroke: 1px ${({ theme }) => theme.textBorder.border};
         font-weight: 500;
     }
 
@@ -66,9 +66,10 @@ const About = styled(motion.div)`
 const FirstContent = styled(motion.div)`
     padding: 10px;
     margin-top: 20vh;
-    background-color: white;
+    background-color: ${({ theme }) => theme.background};
     border-radius: 40px;
     position: relative;
+    transition: all 0.3s ease-in-out;
 
     .title-image {
         min-width: 350px;
@@ -83,6 +84,7 @@ const FirstContent = styled(motion.div)`
     }
 
     .social {
+        ${({ theme }) => theme.background};
         position: absolute;
         bottom: 30px;
         right: 30px;
@@ -113,14 +115,15 @@ const Intro = styled(motion.div)`
     margin: 100px 0;
     font-size: 1rem;
     text-align: center;
-    background-color: #f7f7f7;
+    background-color: ${({ theme }) => theme.box};
     padding: 30px;
     border-radius: 30px;
-    color: rgba(0, 0, 0, 0.78);
+    color: ${({ theme }) => theme.text};
     display: flex;
     flex-direction: column;
     justify-content: center;
     gap: 5px;
+    transition: all 0.3s ease-in-out;
 
     @media (max-width: 1024px) {
         border-radius: 20px;
@@ -133,6 +136,7 @@ const Intro = styled(motion.div)`
 const Projects = styled.div`
     max-width: 1024px;
     margin: auto;
+    transition: all 0.3s ease-in-out;
 
     .card-list {
         display: flex;

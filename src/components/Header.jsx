@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
+import ThemeButton from './ThemeButton';
 
 const HeaderS = styled.header`
     position: fixed;
@@ -10,6 +11,7 @@ const HeaderS = styled.header`
     z-index: 99;
     width: 100%;
     padding: 20px;
+    transition: all 0.3s ease-in-out;
 
     div {
         width: 100%;
@@ -21,7 +23,8 @@ const HeaderS = styled.header`
 
     .logo {
         font-size: 30px;
-        color: black;
+        color: ${({ theme }) => theme.title};
+        transition: all 0.3s ease-in-out;
     }
 
     .menu-button {
@@ -33,8 +36,8 @@ const HeaderS = styled.header`
 
     @media (max-width: 1024px) {
         padding: 10px 20px;
-        background-color: white;
-        box-shadow: 0 0 1px rgba(0, 0, 0, 0.6);
+        background-color: ${({ theme }) => theme.background};
+        box-shadow: 0 0 1px ${({ theme }) => theme.border};
     }
 
     @media (max-width: 768px) {
@@ -48,23 +51,24 @@ const Nav = styled.ul`
     display: flex;
     gap: 20px;
     text-transform: uppercase;
-    background-color: rgba(255, 255, 255, 0.3);
+    background-color: ${({ theme }) => `rgba(${theme.background}, 0.3)`};
     backdrop-filter: blur(10px);
     border-radius: 999px;
     padding: 5px 12px;
+    transition: all 0.3s ease-in-out;
 
     a {
         padding: 8px 18px;
         transition: all 0.2s ease-in-out;
-        color: rgba(0, 0, 0, 0.5);
+        color: ${({ theme }) => theme.text};
 
         &:hover {
-            color: rgba(0, 0, 0, 0.78);
+            color: ${({ theme }) => theme.content};
         }
     }
 
     .active {
-        color: rgba(0, 0, 0, 1);
+        color: ${({ theme }) => theme.title};
     }
 
     @media (max-width: 768px) {
@@ -76,7 +80,7 @@ const Nav = styled.ul`
         padding: 10px;
         border-radius: 8px;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        display: ${({ isOpen }) => (isOpen ? 'flex' : 'none')};
+        display: ${({ $isOpen }) => ($isOpen ? 'flex' : 'none')};
         align-items: center;
     }
 `;
@@ -95,7 +99,7 @@ const Header = () => {
                 <button className="menu-button" onClick={() => setIsOpen(!isOpen)}>
                     {isOpen ? <X size={24} /> : <Menu size={24} />}
                 </button>
-                <Nav isOpen={isOpen}>
+                <Nav $isOpen={isOpen}>
                     {navlist.map((path) => (
                         <Link
                             key={path}
@@ -108,9 +112,7 @@ const Header = () => {
                     ))}
                 </Nav>
 
-                <Link to="/" className="logo" style={{ visibility: 'hidden' }}>
-                    M
-                </Link>
+                <ThemeButton />
             </div>
         </HeaderS>
     );

@@ -16,6 +16,7 @@ const Overlay = styled.div`
     opacity: 0;
     transition: all 0.2s ease;
     font-size: 40px;
+    color: ${({ theme }) => theme.title};
 
     @media (max-width: 768px) {
         font-size: 25px;
@@ -46,10 +47,11 @@ const Card = styled.div`
         li {
             padding: 8px 20px;
             font-size: 13px;
-            background-color: #efefef;
-            color: #6f6f6f;
+            background-color: ${({ theme }) => theme.box};
+            color: ${({ theme }) => theme.text};
             border-radius: 9999px;
             text-transform: capitalize;
+            transition: all 0.3s ease-in-out;
         }
     }
 

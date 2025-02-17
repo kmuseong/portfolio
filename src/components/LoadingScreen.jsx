@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import styled from 'styled-components';
-import { useProject } from '../hooks/ProjectContext';
+import { useProject } from '../context/ProjectContext';
 
 export default function LoadingScreen({ onComplete }) {
     const { updateProjectData } = useProject(); // 전역 상태로 프로젝트 데이터 사용
@@ -185,8 +185,8 @@ const LoadingContainer = styled(motion.div)`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: white;
-    color: #000000;
+    background: ${({ theme }) => theme.background};
+    color: ${({ theme }) => theme.title};
     z-index: 999;
     box-shadow: 0 0 2px black;
 `;
@@ -194,7 +194,7 @@ const LoadingContainer = styled(motion.div)`
 const ProgressBar = styled.div`
     width: 250px;
     height: 5px;
-    background: #efefef;
+    background: ${({ theme }) => theme.box};
     border-radius: 999px;
     overflow: hidden;
 `;
@@ -202,7 +202,7 @@ const ProgressBar = styled.div`
 const ProgressFill = styled(motion.div)`
     width: 0;
     height: 100%;
-    background: #000000;
+    background: ${({ theme }) => theme.title};
 `;
 
 const ProgressText = styled(motion.p)`
@@ -212,7 +212,7 @@ const ProgressText = styled(motion.p)`
 
 const LoadingMessage = styled(motion.p)`
     font-size: 16px;
-    color: #000;
+    color: ${({ theme }) => theme.content};
     font-weight: normal;
 `;
 

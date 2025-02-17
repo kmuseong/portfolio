@@ -45,7 +45,8 @@ const ProjectDetail = ({ data }) => {
 export default ProjectDetail;
 
 const Detail = styled.section`
-    background-color: #f3f3f3;
+    background-color: ${({ theme }) => theme.box};
+    transition: all 0.3s ease-in-out;
 
     .box {
         max-width: 1024px;
@@ -58,9 +59,10 @@ const Detail = styled.section`
         gap: 20px;
 
         p {
-            color: rgba(0, 0, 0, 0.78);
+            color: ${({ theme }) => theme.content};
             margin: 5px 0;
             font-weight: 500;
+            transition: all 0.3s ease-in-out;
         }
     }
 
@@ -69,7 +71,8 @@ const Detail = styled.section`
         flex-direction: column;
         font-size: 16px;
         line-height: 2;
-        color: rgba(0, 0, 0, 0.6);
+        color: ${({ theme }) => theme.text};
+        transition: all 0.3s ease-in-out;
     }
 
     @media (max-width: 1024px) {
