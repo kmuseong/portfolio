@@ -3,7 +3,7 @@ import { useTheme } from '../context/ThemeContext';
 import { Moon, Sun } from 'lucide-react';
 
 const Button = styled.button`
-    background: ${({ theme }) => theme.background};
+    background: transparent;
     color: ${({ theme }) => theme.text};
     border: none;
     cursor: pointer;
