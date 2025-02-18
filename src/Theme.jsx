@@ -3,7 +3,7 @@ export const lightTheme = {
     title: '#000000',
     text: '#565360',
     box: '#f7f7f7',
-    border: '',
+    border: 'rgba(193, 193, 193, 0.4)',
     textBorder: {
         border: 'rgba(0, 0, 0, 0.4)',
     },
@@ -15,7 +15,7 @@ export const darkTheme = {
     content: 'rgba(255,255,255, 0.78)',
     text: 'rgba(255,255,255, 0.6)',
     box: '#333333',
-    border: '',
+    border: 'rgba(0, 0, 0, 0.4)',
     textBorder: {
         border: 'rgba(255, 255, 255)',
     },
