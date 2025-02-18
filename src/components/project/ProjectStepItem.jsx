@@ -27,6 +27,7 @@ const Content = styled.div`
     display: flex;
     align-items: center;
     width: 100%;
+    gap: 50px;
     flex-direction: ${({ $reverse }) => ($reverse ? 'row-reverse' : 'row')};
 
     @media (max-width: 768px) {
@@ -38,7 +39,6 @@ const Content = styled.div`
 const Description = styled(TextBox)`
     flex: 1;
     min-width: 50%;
-    padding-top: 50px;
     display: flex;
     justify-content: center;
 
