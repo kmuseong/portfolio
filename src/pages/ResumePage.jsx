@@ -19,7 +19,7 @@ const Container = styled.div`
         font-weight: 500;
         margin-bottom: 10px;
         text-transform: uppercase;
-        color: ${({ theme }) => theme.title};
+        color: ${({ theme }) => theme.content};
     }
 
     @media (max-width: 1024px) {
@@ -31,11 +31,11 @@ const Container = styled.div`
 
     @media (max-width: 480px) {
         padding: 0 20px;
-        gap: 40px;
+        gap: 50px;
 
         .title {
             font-size: 24px;
-            margin-bottom: 10px;
+            margin-bottom: 20px;
         }
 
         .category-title {
@@ -86,7 +86,8 @@ const Section = styled.div`
 
     .list {
         display: flex;
-        gap: 20px;
+        flex-wrap: wrap;
+        gap: 10px;
         color: ${({ theme }) => theme.content};
 
         li {
@@ -100,7 +101,7 @@ const Section = styled.div`
     @media (max-width: 768px) {
         flex-direction: column;
         align-items: start;
-        gap: 20px;
+        gap: 15px;
 
         .section-item {
             gap: 5px;

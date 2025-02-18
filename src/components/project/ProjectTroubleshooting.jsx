@@ -23,6 +23,7 @@ const Name = styled.div`
     padding: 40px 0;
     font-size: 40px;
     color: ${({ theme }) => theme.content};
+    transition: all 0.3s ease-in-out;
 
     @media (max-width: 480px) {
         font-size: 30px;

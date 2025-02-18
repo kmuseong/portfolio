@@ -119,7 +119,7 @@ const Intro = styled(motion.div)`
     text-align: center;
     background-color: ${({ theme }) => theme.box};
     padding: 30px;
-    border-radius: 30px;
+    border-radius: 20px;
     color: ${({ theme }) => theme.text};
     display: flex;
     flex-direction: column;
@@ -128,10 +128,13 @@ const Intro = styled(motion.div)`
     transition: all 0.3s ease-in-out;
 
     @media (max-width: 1024px) {
-        border-radius: 20px;
         margin: 50px 0;
         padding: 20px;
         font-size: 14px;
+    }
+
+    @media (max-width: 768px) {
+        border-radius: 10px;
     }
 `;
 
@@ -147,7 +150,7 @@ const Projects = styled.div`
         padding: 60px;
     }
 
-    @media (max-width: 480px) {
+    @media (max-width: 768px) {
         width: 100%;
 
         .card-list {
@@ -166,14 +169,14 @@ const Card = styled(motion.img)`
     position: relative;
     flex: 0 1 calc(50% - 25px);
     box-shadow: 0 0 1px gray;
-    border-radius: 30px;
+    border-radius: 20px;
     overflow: hidden;
 
     @media (max-width: 1024px) {
         border-radius: 20px;
     }
 
-    @media (max-width: 480px) {
+    @media (max-width: 768px) {
         flex: none;
         border-radius: 10px;
     }

@@ -10,7 +10,7 @@ import ProjectScrollList from '../components/project/ProjectScrollList';
 const Container = styled.div`
     position: relative;
     padding: 150px 0;
-    z-index: 50;
+    z-index: 0;
 `;
 
 const Step = styled.div`
@@ -47,11 +47,10 @@ const ProjectDetailPage = () => {
     const { projectName } = useParams();
     const { projectData } = useProject();
 
-    // 프로젝트 데이터가 없으면 렌더링하지 않도록 처리
     const project = projectData[projectName];
 
     if (!project) {
-        return <div>프로젝트를 찾을 수 없습니다.</div>; // 데이터가 없을 경우 처리
+        return <div>프로젝트를 찾을 수 없습니다.</div>;
     }
 
     return (
