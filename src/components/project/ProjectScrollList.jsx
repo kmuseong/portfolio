@@ -141,6 +141,8 @@ const ProjectScrollList = ({ data }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [activeId, setActiveId] = useState(null);
 
+    console.log(data);
+
     const toggleMenu = () => setIsOpen((prev) => !prev);
 
     useEffect(() => {
@@ -195,17 +197,31 @@ const ProjectScrollList = ({ data }) => {
                 ))}
             </ListContainer>
 
-            <LinkContainer $isOpen={isOpen}>
-                <ListItem onClick={() => window.open(data.detail.site, '_blank')}>
-                    <Globe className="icon" strokeWidth={1} />
-                    <TextBox>사이트</TextBox>
-                </ListItem>
+            {(data.detail.site !== '' || data.detail.github !== '') && (
+                <LinkContainer $isOpen={isOpen}>
+                    {data.detail.site !== '' && (
+                        <ListItem
+                            onClick={() => {
+                                window.open(data.detail.site, '_blank');
+                            }}
+                        >
+                            <Globe className="icon" strokeWidth={1} />
+                            <TextBox>사이트</TextBox>
+                        </ListItem>
+                    )}
 
-                <ListItem onClick={() => window.open(data.detail.github, '_blank')}>
-                    <Github className="icon" strokeWidth={1} />
-                    <TextBox>깃허브</TextBox>
-                </ListItem>
-            </LinkContainer>
+                    {data.detail.github !== '' && (
+                        <ListItem
+                            onClick={() => {
+                                window.open(data.detail.github, '_blank');
+                            }}
+                        >
+                            <Github className="icon" strokeWidth={1} />
+                            <TextBox>깃허브</TextBox>
+                        </ListItem>
+                    )}
+                </LinkContainer>
+            )}
 
             <FloatingButton onClick={toggleMenu}>
                 <Ellipsis className="icon" />
