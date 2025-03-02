@@ -15,8 +15,8 @@
             "content": ["커피 원두를 간편하게 구매할 수 있는 커머스 플랫폼입니다.", "개인프로젝트"]
         },
         "tech": ["React, Typescript, Supabase, Zustand, Tanstack-query, Shadcn/ui"],
-        "site": "",
-        "github": ""
+        "site": "https://commerce-kappa-coral-63.vercel.app/",
+        "github": "https://github.com/kmuseong/commerce"
     },
 
     "intro": [
